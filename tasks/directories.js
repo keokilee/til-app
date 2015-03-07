@@ -17,5 +17,6 @@ module.exports = {
   ],
   appJS: [
     'client/assets/js/app.js'
-  ]
+  ],
+  mainJS: './client/assets/js/app.js'
 };
