@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('application', [
+angular.module('til.app', [
   'ui.router',
   'ngAnimate',
 
