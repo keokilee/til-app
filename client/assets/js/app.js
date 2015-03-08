@@ -1,6 +1,7 @@
-'use strict';
+require('angularfire');
 
-angular.module('til.app', [
+
+angular.module('til.application', [
   'ui.router',
   'ngAnimate',
 
@@ -13,9 +14,9 @@ angular.module('til.app', [
   .run(run)
 ;
 
-config.$inject = ['$urlRouterProvider', '$locationProvider'];
+config.$inject = ['$urlRouterProvider', '$locationProvider', '$stateProvider'];
 
-function config($urlProvider, $locationProvider) {
+function config($urlProvider, $locationProvider, $stateProvider) {
   $urlProvider.otherwise('/');
 
   $locationProvider.html5Mode({
@@ -24,6 +25,12 @@ function config($urlProvider, $locationProvider) {
   });
 
   $locationProvider.hashPrefix('!');
+
+  $stateProvider
+    .state('main', {
+      url: '/',
+      templateUrl: 'templates/home.html'
+    });
 }
 
 function run() {

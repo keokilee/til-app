@@ -1,2 +1,15 @@
 @import "settings";
 @import "foundation";
+
+h1, h2 {
+  font-family: 'Raleway', sans-serif;
+  letter-spacing: 0.1rem;
+}
+
+body {
+  background-color: #BDFCFF;
+}
+
+.login {
+  margin-top: 30px;
+}
