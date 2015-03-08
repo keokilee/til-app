@@ -1,7 +1,20 @@
 ---
 name: home
 url: /
+controller: 'AuthController'
+controllerAs: 'authController'
 ---
 
-<h1>Welcome to Foundation for Apps!</h1>
-<p class="lead">This is version <strong>1.0.3 Matterhorn</strong>.</p>
+<div class="login">
+  <h1>til</h1>
+  <h2>Today I learned {{message}}</h2>
+
+  <form class="login-form">
+    <div class="row">
+      <div class="large-6 columns">
+        <a href="#" class="button" ng-click="loginUser()">Log In With Github</a>
+      </div>
+    </div>
+  </form>
+</div>
+

@@ -1,5 +1,4 @@
-require('angularfire');
-
+require('./auth');
 
 angular.module('til.application', [
   'ui.router',
@@ -8,15 +7,17 @@ angular.module('til.application', [
   //foundation
   'foundation',
   'foundation.dynamicRouting',
-  'foundation.dynamicRouting.animations'
+  'foundation.dynamicRouting.animations',
+
+  // TIL modules
+  'til.auth'
 ])
-  .config(config)
-  .run(run)
-;
+.config(config)
+.run(run);
 
-config.$inject = ['$urlRouterProvider', '$locationProvider', '$stateProvider'];
+config.$inject = ['$urlRouterProvider', '$locationProvider'];
 
-function config($urlProvider, $locationProvider, $stateProvider) {
+function config($urlProvider, $locationProvider) {
   $urlProvider.otherwise('/');
 
   $locationProvider.html5Mode({
@@ -25,12 +26,6 @@ function config($urlProvider, $locationProvider, $stateProvider) {
   });
 
   $locationProvider.hashPrefix('!');
-
-  $stateProvider
-    .state('main', {
-      url: '/',
-      templateUrl: 'templates/home.html'
-    });
 }
 
 function run() {
