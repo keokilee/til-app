@@ -1,20 +1,25 @@
 var Firebase = require('firebase');
 
-module.exports = AuthController;
+module.exports = LoginController;
 
-AuthController.$inject = ['$scope', '$firebaseAuth'];
+LoginController.$inject = ['$scope', '$state', '$firebaseAuth'];
 
-function AuthController($scope, $firebaseAuth) {
-  var controller = this;
-
-  var ref = new Firebase('https://til.firebaseio.com/"');
+function LoginController($scope, $state, $firebaseAuth) {
+  var ref = new Firebase('https://til.firebaseio.com/');
   var auth = $firebaseAuth(ref);
 
+  auth.$onAuth(authData => {
+    console.log(authData);
+    if (authData) {
+      $state.go('list');
+    }
+  });
+
   $scope.loginUser = function() {
-    console.log('yo');
-    auth.$authWithOAuthPopup("github").then(function(authData) {
+    auth.$authWithOAuthPopup("github").then(authData => {
       console.log("Logged in as:", authData.uid);
-    }).catch(function(error) {
+      $state.go('list');
+    }).catch(error => {
       console.log("Authentication failed:", error);
     });
   };
