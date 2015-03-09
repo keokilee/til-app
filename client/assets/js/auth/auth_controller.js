@@ -15,8 +15,8 @@ function LoginController($scope, $state, $firebaseAuth) {
     }
   });
 
-  $scope.loginUser = function() {
-    auth.$authWithOAuthPopup("github").then(authData => {
+  $scope.loginUser = function(provider) {
+    auth.$authWithOAuthPopup(provider).then(authData => {
       console.log("Logged in as:", authData.uid);
       $state.go('list');
     }).catch(error => {

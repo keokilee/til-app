@@ -4,16 +4,19 @@ url: /
 controller: 'AuthController'
 ---
 
-<div class="login">
-  <h1>til</h1>
-  <h2>Today I learned</h2>
+<div class="row">
+  <div class="medium-offset-2 medium-8 columns end">
+    <div class="login">
+      <h1>#til</h1>
+      <h3>Today I learned</h3>
 
-  <form class="login-form">
-    <div class="row">
-      <div class="large-6 columns">
-        <a href="#" class="button" ng-click="loginUser()">Log In With Github</a>
-      </div>
+      <hr/>
+      <h6>Log In</h6>
+
+      <button ng-click="loginUser('facebook')">Facebook</button>
+      <button ng-click="loginUser('twitter')">Twitter</button>
+      <button ng-click="loginUser('google')">Google</button>
+      <button ng-click="loginUser('github')">Github</button>
     </div>
-  </form>
+  </div>
 </div>
-
