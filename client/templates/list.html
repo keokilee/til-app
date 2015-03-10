@@ -1,7 +1,14 @@
 ---
 name: list
 url: /list
-controller: 'AuthController'
+controller: 'ListController'
 ---
 
-<h2>Things you learned</h2>
+<form>
+  <input type="text" ng-model="itemText" placeholder="What did you learn today?">
+  <button ng-click="addThing(itemText)" ng-disabled="!itemText">Post</button>
+</form>
+
+<ul ng-repeat="thing in things">
+  <li>{{thing.content}}</li>
+</ul>

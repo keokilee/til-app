@@ -1,4 +1,5 @@
 require('./auth');
+require('./til');
 
 angular.module('til.application', [
   'ui.router',
@@ -10,7 +11,8 @@ angular.module('til.application', [
   'foundation.dynamicRouting.animations',
 
   // TIL modules
-  'til.auth'
+  'til.auth',
+  'til.main'
 ])
 .config(config)
 .run(run);

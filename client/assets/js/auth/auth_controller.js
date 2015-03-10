@@ -6,7 +6,9 @@ LoginController.$inject = ['$scope', '$state', 'authService'];
 
 function LoginController($scope, $state, authService) {
   authService.isAuthenticated(authData => {
-    $state.go('list');
+    if (authData) {
+      $state.go('list');
+    }
   });
 
   $scope.loginUser = function (provider) {

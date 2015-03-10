@@ -13,13 +13,8 @@ function AuthService($firebaseAuth) {
     loginUser
   };
 
-  function isAuthenticated(success, fail) {
-    // Function stub for failure case.
-    fail = fail || function() {};
-
-    auth.$onAuth(authData => {
-      authData ? success(authData) : fail();
-    });
+  function isAuthenticated(callback) {
+    auth.$onAuth(callback);
   }
 
   function loginUser(provider) {
