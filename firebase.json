@@ -1,0 +1,9 @@
+{
+  "firebase": "til",
+  "public": "build",
+  "ignore": [
+    "firebase.json",
+    "**/.*",
+    "**/node_modules/**"
+  ]
+}
