@@ -2,7 +2,7 @@ var Firebase = require('firebase');
 
 module.exports = AuthService;
 
-AuthService.$inject = ['$firebaseAuth'];
+AuthService.$inject = ['$firebaseAuth', '$firebaseObject'];
 
 function AuthService($firebaseAuth, $firebaseObject) {
   let ref = new Firebase('https://til.firebaseio.com/');
@@ -16,8 +16,9 @@ function AuthService($firebaseAuth, $firebaseObject) {
   function isAuthenticated(callback) {
     auth.$onAuth((authData) =>{
       // Save the auth data.
-      saveData(authData);
-      callback(authData);
+      saveData(authData).then(() => {
+        callback(authData);
+      });
     });
   }
 
@@ -30,14 +31,18 @@ function AuthService($firebaseAuth, $firebaseObject) {
   }
 
   function saveData(data) {
+    var promise;
+
     // Looks like each auth strategy has their own data.
     if (data.provider === 'github') {
-      let user = $firebaseObject(ref.child('users').child(data.github.email));
-      user.$loaded().then(() => {
-        user.name = data.github.displayName;
-        user.username = data.github.username;
+      let user = $firebaseObject(ref.child('users').child(data.github.username));
+      promise = user.$loaded().then(() => {
+        user.email = data.github.email;
+        user.displayName = data.github.displayName;
         user.$save();
       });
     }
+
+    return promise;
   }
 }
