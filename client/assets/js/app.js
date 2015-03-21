@@ -7,8 +7,6 @@ angular.module('til.application', [
 
   //foundation
   'foundation',
-  'foundation.dynamicRouting',
-  'foundation.dynamicRouting.animations',
 
   // TIL modules
   'til.auth',
@@ -17,9 +15,9 @@ angular.module('til.application', [
 .config(config)
 .run(run);
 
-config.$inject = ['$urlRouterProvider', '$locationProvider'];
+config.$inject = ['$stateProvider', '$urlRouterProvider', '$locationProvider'];
 
-function config($urlProvider, $locationProvider) {
+function config($stateProvider, $urlProvider, $locationProvider) {
   $urlProvider.otherwise('/');
 
   $locationProvider.html5Mode({
@@ -28,6 +26,20 @@ function config($urlProvider, $locationProvider) {
   });
 
   $locationProvider.hashPrefix('!');
+
+  $stateProvider
+    .state('list', {
+      url: '/list',
+      controller: 'ListController',
+      controllerAs: 'listCtrl',
+      templateUrl: '/templates/list.html'
+    })
+    .state('home', {
+      url: '/',
+      controller: 'AuthController',
+      controllerAs: 'authCtrl',
+      templateUrl: '/templates/home.html'
+    })
 }
 
 function run() {
