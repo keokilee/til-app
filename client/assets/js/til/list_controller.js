@@ -11,13 +11,6 @@ function ListController($scope, $state, authService, $firebaseArray) {
   init();
 
   function init() {
-    // Check if user is authenticated.
-    authService.isAuthenticated(authData => {
-      if (!authData) {
-        $state.go('home');
-      }
-    });
-
     // Array of items.
     $scope.things = $firebaseArray(thingsRef).sort(itemCompare);
     $scope.things.$watch(() => {

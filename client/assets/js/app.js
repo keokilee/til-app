@@ -17,32 +17,52 @@ angular.module('til.application', [
 .config(config)
 .run(run);
 
-
 function config($stateProvider, $urlRouterProvider, $locationProvider) {
   $urlRouterProvider.otherwise('/');
 
   $locationProvider.html5Mode({
-    enabled:false,
+    enabled: false,
     requireBase: false
   });
-
-  $locationProvider.hashPrefix('!');
 
   $stateProvider
     .state('list', {
       url: '/list',
       controller: 'ListController',
       controllerAs: 'listCtrl',
-      templateUrl: '/templates/list.html'
+      templateUrl: '/templates/list.html',
+      resolve: {
+        requireAuth
+      }
     })
     .state('home', {
       url: '/',
       controller: 'AuthController',
       controllerAs: 'authCtrl',
-      templateUrl: '/templates/home.html'
-    })
+      templateUrl: '/templates/home.html',
+      resolve: {
+        isAuthenticated
+      }
+    });
 }
 
-function run() {
+function run($rootScope, $state) {
   FastClick.attach(document.body);
+
+  // Handle state change errors.
+  $rootScope.$on('$stateChangeError', (event, toState, toParams, fromState, fromParams, error) => {
+    debugger;
+    if (error === 'AUTH_REQUIRED') {
+      $state.go('home');
+    }
+  });
+}
+
+// Resolve helpers.
+function requireAuth(authService) {
+  return authService.requireAuth();
+}
+
+function isAuthenticated(authService) {
+  return authService.authenticate();
 }

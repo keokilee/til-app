@@ -2,29 +2,28 @@ var Firebase = require('firebase');
 
 module.exports = AuthService;
 
-function AuthService($firebaseAuth, $firebaseObject) {
+function AuthService($firebaseAuth, $firebaseObject, $q) {
   let ref = new Firebase('https://til.firebaseio.com/');
   let auth = $firebaseAuth(ref);
 
   return {
-    isAuthenticated,
+    requireAuth,
+    authenticate,
     loginUser
   };
 
-  function isAuthenticated(callback) {
-    auth.$onAuth((authData) =>{
-      // Save the auth data.
-      saveData(authData).then(() => {
-        callback(authData);
-      });
-    });
+  function requireAuth() {
+    return auth.$requireAuth();
+  }
+
+  function authenticate() {
+    return auth.$waitForAuth();
   }
 
   function loginUser(provider) {
     return auth.$authWithOAuthPopup(provider).then(function (authData) {
       // Persist the user information.
-      saveData(authData);
-      return authData;
+      return saveData(authData);
     });
   }
 
@@ -38,6 +37,8 @@ function AuthService($firebaseAuth, $firebaseObject) {
         user.email = data.github.email;
         user.displayName = data.github.displayName;
         user.$save();
+
+        return data;
       });
     }
 
