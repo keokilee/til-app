@@ -2,8 +2,6 @@ var Firebase = require('firebase');
 
 module.exports = AuthService;
 
-AuthService.$inject = ['$firebaseAuth', '$firebaseObject'];
-
 function AuthService($firebaseAuth, $firebaseObject) {
   let ref = new Firebase('https://til.firebaseio.com/');
   let auth = $firebaseAuth(ref);

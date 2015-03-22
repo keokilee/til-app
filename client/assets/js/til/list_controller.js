@@ -2,8 +2,6 @@ var Firebase = require('firebase');
 
 module.exports = ListController;
 
-ListController.$inject = ['$scope', '$state', 'authService', '$firebaseArray'];
-
 function ListController($scope, $state, authService, $firebaseArray) {
   let ref = new Firebase('https://til.firebaseio.com/');
   let thingsRef = ref.child('things');

@@ -2,16 +2,16 @@ var Firebase = require('firebase');
 
 module.exports = LoginController;
 
-LoginController.$inject = ['$scope', '$state', 'authService'];
+function LoginController($state, authService) {
+  var controller = this;
 
-function LoginController($scope, $state, authService) {
   authService.isAuthenticated(authData => {
     if (authData) {
       $state.go('list');
     }
   });
 
-  $scope.loginUser = function (provider) {
+  controller.loginUser = function (provider) {
     authService.loginUser(provider).then(authData => {
       console.log(`Logged in as: ${authData.uid}`);
       $state.go('list');

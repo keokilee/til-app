@@ -4,7 +4,6 @@ var gulp = require('gulp');
 gulp.task('copy', function() {
   var dirs = [
     './client/**/*.*',
-    '!./client/templates/**/*.*',
     '!./client/assets/{scss,js}/**/*.*'
   ];
 
@@ -12,13 +11,24 @@ gulp.task('copy', function() {
   gulp.src(dirs, {
     base: './client/'
   })
-    .pipe(gulp.dest('./build'));
+  .pipe(gulp.dest('./build'));
 
-  // Iconic SVG icons
-  gulp.src('./bower_components/foundation-apps/iconic/**/*')
-    .pipe(gulp.dest('./build/assets/img/iconic/'));
+  // Bower javascript files.
+  gulp.src([
+    'bower_components/modernizr/modernizr.js',
+    "bower_components/jquery/dist/jquery.js",
+    "bower_components/fastclick/lib/fastclick.js",
+    "bower_components/jquery.cookie/jquery.cookie.js",
+    "bower_components/jquery-placeholder/jquery.placeholder.js",
+    "bower_components/foundation/js/foundation.js"
+  ])
+  .pipe(gulp.dest('./build/assets/js'));
 
-  // Foundation's Angular partials
-  return gulp.src(['./bower_components/foundation-apps/js/angular/components/**/*.html'])
-    .pipe(gulp.dest('./build/components/'));
+  // Bower css files.
+  gulp.src([
+    'bower_components/foundation-icon-fonts/foundation-icons.css',
+    'bower_components/foundation/css/foundation.css',
+    'bower_components/foundation/css/foundation.css.map'
+  ])
+  .pipe(gulp.dest('./build/assets/css'));
 });

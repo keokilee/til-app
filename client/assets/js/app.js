@@ -1,12 +1,14 @@
+var angular = require('angular');
+
+require('angular-ui-router');
+require('angular-animate');
+
 require('./auth');
 require('./til');
 
 angular.module('til.application', [
   'ui.router',
   'ngAnimate',
-
-  //foundation
-  'foundation',
 
   // TIL modules
   'til.auth',
@@ -15,10 +17,9 @@ angular.module('til.application', [
 .config(config)
 .run(run);
 
-config.$inject = ['$stateProvider', '$urlRouterProvider', '$locationProvider'];
 
-function config($stateProvider, $urlProvider, $locationProvider) {
-  $urlProvider.otherwise('/');
+function config($stateProvider, $urlRouterProvider, $locationProvider) {
+  $urlRouterProvider.otherwise('/');
 
   $locationProvider.html5Mode({
     enabled:false,

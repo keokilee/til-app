@@ -23,7 +23,7 @@
     "tests"
   ],
   "dependencies": {
-    "foundation-apps": "~1.0.3",
-    "foundation-icon-fonts": "*"
+    "foundation-icon-fonts": "*",
+    "foundation": "~5.5.1"
   }
 }
