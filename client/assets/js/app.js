@@ -51,7 +51,6 @@ function run($rootScope, $state) {
 
   // Handle state change errors.
   $rootScope.$on('$stateChangeError', (event, toState, toParams, fromState, fromParams, error) => {
-    debugger;
     if (error === 'AUTH_REQUIRED') {
       $state.go('home');
     }

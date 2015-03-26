@@ -27,6 +27,8 @@ function AuthService($firebaseAuth, $firebaseObject, $q) {
     });
   }
 
+  // Private helper functions.
+
   function saveData(data) {
     var promise;
 
