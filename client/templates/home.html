@@ -1,16 +1,33 @@
-<div class="row">
-  <div class="medium-offset-2 medium-8 columns end">
-    <div class="login">
+<div class="row login">
+  <div class="medium-offset-1 medium-10 columns end">
+    <div class="login-container">
       <h1>#til</h1>
       <h3>Today I learned</h3>
 
       <hr/>
       <h6>Log In</h6>
 
-      <button ng-click="authCtrl.loginUser('facebook')">Facebook</button>
-      <button ng-click="authCtrl.loginUser('twitter')">Twitter</button>
-      <button ng-click="authCtrl.loginUser('google')">Google</button>
-      <button ng-click="authCtrl.loginUser('github')">Github</button>
+      <div class="row">
+        <div class="medium-3 small-6 centered columns">
+          <button ng-click="authCtrl.loginUser('facebook')"><span class="icon fi-social-facebook"></span> Facebook</button>
+        </div>
+        <div class="medium-3 small-6 centered columns">
+          <button ng-click="authCtrl.loginUser('twitter')"><span class="icon fi-social-twitter"></span> Twitter</button>
+        </div>
+
+        <div class="medium-3 small-6 centered columns">
+          <button ng-click="authCtrl.loginUser('google')"><span class="icon fi-social-google-plus"></span> Google</button>
+        </div>
+        <div class="medium-3 small-6 centered columns">
+          <button ng-click="authCtrl.loginUser('github')"><span class="icon fi-social-github"></span> Github</button>
+        </div>
+      </div>
     </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="medium-6 columns end">
+    <h3>About this app</h3>
   </div>
 </div>
