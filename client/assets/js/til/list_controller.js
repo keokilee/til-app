@@ -2,19 +2,21 @@ var Firebase = require('firebase');
 
 module.exports = ListController;
 
-function ListController($scope, $state, authService, $firebaseArray) {
-  let ref = new Firebase('https://til.firebaseio.com/');
-  let thingsRef = ref.child('things');
+function ListController($firebaseArray, requireAuth) {
+  let ref = new Firebase('https://til.firebaseio.com/things');
+  let thingsRef = ref.child(requireAuth.uid);
 
-  $scope.addThing = addThing;
+  var controller = this;
+
+  controller.addThing = addThing;
 
   init();
 
   function init() {
     // Array of items.
-    $scope.things = $firebaseArray(thingsRef).sort(itemCompare);
-    $scope.things.$watch(() => {
-      $scope.things.sort(itemCompare);
+    controller.things = $firebaseArray(thingsRef).sort(itemCompare);
+    controller.things.$watch(() => {
+      controller.things.sort(itemCompare);
     });
   }
 
@@ -24,8 +26,8 @@ function ListController($scope, $state, authService, $firebaseArray) {
       timestamp: Firebase.ServerValue.TIMESTAMP
     };
 
-    $scope.things.$add(data);
-    $scope.itemText = "";
+    controller.things.$add(data);
+    controller.itemText = "";
   }
 
   function itemCompare(a, b) {

@@ -1,27 +1,14 @@
 @import "settings";
 @import "colors";
+@import "typography";
 @import "foundation";
-
-h1, h2, h3 {
-  font-family: 'Raleway', sans-serif;
-  letter-spacing: 0.1rem;
-  font-weight: 200;
-}
-
-button, input {
-  font-family: 'Raleway', sans-serif;
-  font-weight: 500;
-}
 
 body {
   background-color: #EEE;
-  .grid-content {
-    padding: 0;
-  }
 }
 
 .login {
-  background-color: #6fa6b5;
+  background-color: $background-blue;
   padding: 30px 0;
 }
 
@@ -31,13 +18,19 @@ body {
   border-radius: 15px;
   padding: 10px;
 
-  button {
-    width: 100%;
-  }
-
   .icon {
     font-size: 20px;
     vertical-align: middle;
     margin-right: 2px;
   }
+}
+
+.til-list {
+  padding: 20px inherit;
+  background-color: $background-blue;
+}
+
+.til-item {
+  background-color: #FFF;
+  padding: 10px;
 }

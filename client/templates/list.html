@@ -1,8 +1,26 @@
-<form>
-  <input type="text" ng-model="itemText" placeholder="What did you learn today?">
-  <button ng-click="addThing(itemText)" ng-disabled="!itemText">Post</button>
-</form>
+<nav class="top-bar foundation-bar" data-topbar role="navigation">
+  <ul class="title-area">
+    <li class="name"><h1><a href="#">TIL</a></h1></li>
+  </ul>
+</nav>
 
-<ul ng-repeat="thing in things">
-  <li>{{thing.content}}</li>
-</ul>
+<div class="til-list">
+  <div class='row'>
+    <div class="large-12 columns">
+      <div class="row collapse">
+        <div class="large-11 columns">
+          <input type="text" ng-model="itemText" placeholder="What did you learn today?">
+        </div>
+        <div class="large-1 columns">
+          <button class="postfix" ng-click="listCtrl.addThing(itemText)" ng-disabled="!itemText">Post</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div ng-repeat="thing in listCtrl.things" class="row til-item">
+    <div class="large-12 columns">
+      {{thing.content}}
+    </div>
+  </div>
+</div>
