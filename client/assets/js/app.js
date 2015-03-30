@@ -2,6 +2,7 @@ var angular = require('angular');
 
 require('angular-ui-router');
 require('angular-animate');
+require('angular-moment');
 
 require('./auth');
 require('./til');
@@ -9,6 +10,7 @@ require('./til');
 angular.module('til.application', [
   'ui.router',
   'ngAnimate',
+  'angularMoment',
 
   // TIL modules
   'til.auth',

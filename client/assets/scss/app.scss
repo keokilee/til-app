@@ -32,5 +32,10 @@ body {
 
 .til-item {
   background-color: #FFF;
-  padding: 10px;
+  padding-top: 10px;
+
+  .til-posted {
+    font-style: italic;
+    font-size: 0.8em;
+  }
 }

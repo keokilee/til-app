@@ -20,7 +20,7 @@
 
   <div ng-repeat="thing in listCtrl.things" class="row til-item">
     <div class="large-12 columns">
-      {{thing.content}}
+      <p>{{thing.content}} <span class="til-posted">- <time am-time-ago="thing.timestamp"></time></span></p>
     </div>
   </div>
 </div>
