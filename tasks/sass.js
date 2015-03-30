@@ -3,12 +3,12 @@ var $ = require('gulp-load-plugins')();
 var sassPaths = require('./directories').sassPaths;
 
 gulp.task('sass', function() {
-  return gulp.src('client/assets/scss/app.scss')
-    .pipe($.rubySass({
+  return $.rubySass('client/assets/scss/app.scss', {
       loadPath: sassPaths,
       style: 'nested',
       bundleExec: true
-    })).on('error', function(e) {
+    })
+    .on('error', function(e) {
       console.log(e);
     })
     .pipe($.autoprefixer({
