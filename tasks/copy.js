@@ -15,17 +15,13 @@ gulp.task('copy', function() {
 
   // Bower javascript files.
   gulp.src([
-    'bower_components/modernizr/modernizr.js',
-    "bower_components/jquery/dist/jquery.js",
-    "bower_components/fastclick/lib/fastclick.js",
-    "bower_components/jquery.cookie/jquery.cookie.js",
-    "bower_components/jquery-placeholder/jquery.placeholder.js",
     "bower_components/foundation/js/foundation.js"
   ])
   .pipe(gulp.dest('./build/assets/js'));
 
-  // Bower css files.
+  // CSS files
   gulp.src([
+    'node_modules/angular-material/angular-material.css',
     'bower_components/foundation-icon-fonts/foundation-icons.css',
     'bower_components/foundation-icon-fonts/foundation-icons.woff',
     'bower_components/foundation-icon-fonts/foundation-icons.ttf',

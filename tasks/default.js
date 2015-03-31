@@ -1,7 +1,7 @@
 var gulp = require('gulp');
 
 // Default task: builds your app, starts a server, and recompiles assets when they change
-gulp.task('default', ['build', 'server:start', 'bower'], function() {
+gulp.task('default', ['build', 'server:start'], function() {
   // Watch Sass
   gulp.watch(['./client/assets/scss/**/*', './scss/**/*'], ['sass']);
 

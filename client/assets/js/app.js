@@ -1,7 +1,13 @@
 var angular = require('angular');
+var attachFastClick = require('fastclick');
 
+window.jQuery = require('jquery');
+
+require('browsernizr');
+require('angular-aria');
 require('angular-ui-router');
 require('angular-animate');
+require('angular-material');
 require('angular-moment');
 
 require('./auth');
@@ -11,6 +17,8 @@ angular.module('til.application', [
   'ui.router',
   'ngAnimate',
   'angularMoment',
+  'ngAria',
+  'ngMaterial',
 
   // TIL modules
   'til.auth',
@@ -49,7 +57,7 @@ function config($stateProvider, $urlRouterProvider, $locationProvider) {
 }
 
 function run($rootScope, $state) {
-  FastClick.attach(document.body);
+  attachFastClick(document.body);
 
   // Handle state change errors.
   $rootScope.$on('$stateChangeError', (event, toState, toParams, fromState, fromParams, error) => {
