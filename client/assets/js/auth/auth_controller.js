@@ -11,7 +11,6 @@ function LoginController($state, authService, isAuthenticated) {
 
   controller.loginUser = function (provider) {
     authService.loginUser(provider).then(authData => {
-      console.log(`Logged in as: ${authData.uid}`);
       $state.go('list');
     }).catch(error => {
       console.log("Authentication failed:", error);

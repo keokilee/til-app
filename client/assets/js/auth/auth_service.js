@@ -12,7 +12,8 @@ function AuthService($firebaseAuth, $firebaseObject, $q) {
     requireAuth,
     authenticate,
     loginUser,
-    getUser
+    getUser,
+    logout
   };
 
   function getUser() {
@@ -28,10 +29,14 @@ function AuthService($firebaseAuth, $firebaseObject, $q) {
   }
 
   function loginUser(provider) {
-    return auth.$authWithOAuthPopup(provider).then(function (authData) {
+    return auth.$authWithOAuthPopup(provider).then((authData) => {
       // Persist the user information.
       return saveData(authData);
     });
+  }
+
+  function logout() {
+    return auth.$unauth();
   }
 
   // Private helper functions.
@@ -41,10 +46,12 @@ function AuthService($firebaseAuth, $firebaseObject, $q) {
 
     // Looks like each auth strategy has their own data.
     if (data.provider === 'github') {
-      user = $firebaseObject(ref.child('users').child(data.github.username));
+      user = $firebaseObject(ref.child('users').child(data.uid));
       promise = user.$loaded().then(() => {
         user.email = data.github.email;
         user.displayName = data.github.displayName;
+        user.username = data.github.username;
+        user.avatar_url = data.github.cachedUserProfile.avatar_url;
         user.$save();
 
         return data;
